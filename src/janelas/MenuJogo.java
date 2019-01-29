@@ -14,6 +14,7 @@ public class MenuJogo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+<<<<<<< HEAD
         buttonGroup1 = new javax.swing.ButtonGroup();
         BtIniciar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -24,7 +25,20 @@ public class MenuJogo extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         CaixaTextoNome = new javax.swing.JTextField();
         LblNome = new javax.swing.JLabel();
+=======
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(java.awt.Color.orange);
+>>>>>>> 7fcbf775f0ab8b6435c390c4eb22da4cd4733643
+
+        jLabel1.setForeground(new java.awt.Color(13, 11, 249));
         jLabel1.setText("Qual seu nome?");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -37,6 +51,7 @@ public class MenuJogo extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         LblTextoPares.setText("Quantidade de pares?");
 
         IsRadioBotao8.setText("8");
@@ -109,6 +124,24 @@ public class MenuJogo extends javax.swing.JFrame {
                     .addComponent(LblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
                 .addContainerGap())
         );
+=======
+        jButton1.setBackground(new java.awt.Color(1, 124, 1));
+        jButton1.setFont(new java.awt.Font("Noto Serif CJK KR", 1, 15)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(242, 241, 240));
+        jButton1.setText("INICIAR");
+
+        jLabel2.setForeground(new java.awt.Color(13, 11, 249));
+        jLabel2.setText("Quantidade de pares?");
+
+        jRadioButton1.setForeground(new java.awt.Color(13, 11, 249));
+        jRadioButton1.setText("2 pares");
+
+        jRadioButton2.setForeground(new java.awt.Color(13, 11, 249));
+        jRadioButton2.setText("8 pares");
+
+        jRadioButton3.setForeground(new java.awt.Color(13, 11, 249));
+        jRadioButton3.setText("16 pares");
+>>>>>>> 7fcbf775f0ab8b6435c390c4eb22da4cd4733643
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
