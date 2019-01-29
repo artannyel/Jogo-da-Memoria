@@ -27,7 +27,10 @@ public class MenuJogo extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(java.awt.Color.orange);
 
+        jLabel1.setForeground(new java.awt.Color(13, 11, 249));
         jLabel1.setText("Qual seu nome?");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -36,15 +39,21 @@ public class MenuJogo extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(1, 124, 1));
         jButton1.setFont(new java.awt.Font("Noto Serif CJK KR", 1, 15)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(242, 241, 240));
         jButton1.setText("INICIAR");
 
+        jLabel2.setForeground(new java.awt.Color(13, 11, 249));
         jLabel2.setText("Quantidade de pares?");
 
+        jRadioButton1.setForeground(new java.awt.Color(13, 11, 249));
         jRadioButton1.setText("2 pares");
 
+        jRadioButton2.setForeground(new java.awt.Color(13, 11, 249));
         jRadioButton2.setText("8 pares");
 
+        jRadioButton3.setForeground(new java.awt.Color(13, 11, 249));
         jRadioButton3.setText("16 pares");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
