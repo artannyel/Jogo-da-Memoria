@@ -15,12 +15,8 @@ import java.util.ArrayList;
 public class PainelJogo extends JFrame{
     private ActionListener acaoBotao;
     private List<ConjuntoBotoes> listConjBotoes;
-<<<<<<< HEAD
     private ConjuntoBotoes conjBotao;
-=======
     private List<ConjuntoBotoes> listSelecionados;
-
->>>>>>> 131a7c1035d35ca4ba1c8a2fcc89062032680147
     private int MAX_JOGADAS = 2;
     private int jogadas;
     private JPanel painel;
@@ -76,19 +72,16 @@ public class PainelJogo extends JFrame{
         this.setSize(defTamPainel(largJanela), defTamPainel(altJanela)+30); // definir o tamanho da janela PainelJogo
         this.setLocationRelativeTo(null); //Centralizar a PainelJogo no meio
         
-<<<<<<< HEAD
        //botao1 = new MyBotao("");
        //botao1.setBounds(10, 10, 64, 64);
        //botao1.setBackground(null);
        //this.painel.add(this.botao1);
-=======
+
       /* botao1 = new MyBotao();
        botao1.setBounds(10, 10, 64, 64);
        botao1.setBackground(null);
        this.painel.add(this.botao1);
        */
-  
->>>>>>> 131a7c1035d35ca4ba1c8a2fcc89062032680147
         
         this.painel.setVisible(true); // definir visibilidade dessa janela
         this.setResizable(false); // impedir que o tamanho original mude
