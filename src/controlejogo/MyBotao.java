@@ -11,8 +11,7 @@ public class MyBotao extends JButton {
         
     }
     
-    public MyBotao (String refImagem, int numBotao){
-        this.refImagem = refImagem;
+    public MyBotao (int numBotao){
         this.numBotao = numBotao;
         this.status = "NAOSELECIONADO";
     }

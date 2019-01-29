@@ -4,6 +4,7 @@ import controlejogo.ConjuntoBotoes;
 import controlejogo.MyBotao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,14 +13,22 @@ import javax.swing.JPanel;
 public class PainelJogo extends JFrame{
     private ActionListener acaoBotao;
     private List<ConjuntoBotoes> listConjBotoes;
+    private List<ConjuntoBotoes> listSelecionados;
+
     private int MAX_JOGADAS = 2;
     private int jogadas;
     private JPanel painel;
     private MyBotao botao1;
-    private MyBotao botao2;
+    private ConjuntoBotoes conjBut;
     
     public PainelJogo( int pares){
         super("Jogo da Memoria");
+        
+        listSelecionados = new ArrayList<>();
+        listConjBotoes = new ArrayList<>();
+        
+
+        
         int largJanela, altJanela;
             if(pares == 6){
                 largJanela = 4;
@@ -41,6 +50,12 @@ public class PainelJogo extends JFrame{
                 posBotao = ((MyBotao) ae.getSource()).getNumBotao();
                     for(ConjuntoBotoes conjBot : listConjBotoes){
                         jogadas++;
+                        
+                        //verifica
+                            if(!listSelecionados.contains(conjBot)){
+                                listSelecionados.add(conjBot);
+                            }
+                            
                     }
             }
             
@@ -55,10 +70,12 @@ public class PainelJogo extends JFrame{
         this.setSize(defTamPainel(largJanela), defTamPainel(altJanela)); // definir o tamanho da janela PainelJogo
         this.setLocationRelativeTo(null); //Centralizar a PainelJogo no meio
         
-       botao1 = new MyBotao("");
+      /* botao1 = new MyBotao();
        botao1.setBounds(10, 10, 64, 64);
        botao1.setBackground(null);
        this.painel.add(this.botao1);
+       */
+  
         
         this.painel.setVisible(true); // definir visibilidade dessa janela
         this.setResizable(false); // impedir que o tamanho original mude
