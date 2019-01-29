@@ -2,6 +2,7 @@ package janelas;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import controlejogo.ConjuntoBotoes;
 
 public class PainelJogo extends JFrame{
     private JPanel painel;
@@ -28,5 +29,14 @@ public class PainelJogo extends JFrame{
         tamanho = ((Lado+1)*5)+(Lado*50);
         System.out.println(tamanho);
         return tamanho;
+    }
+    
+    private void sorteio (ConjuntoBotoes qtdPares){
+        // Quantidade de botoes
+        
+        // Quantidade de controladores
+        // Colocar os botoes na tela
+        // Adaptar o tamanho da tela
+        // Randomizar o posicionamento dos botoes
     }
 }
