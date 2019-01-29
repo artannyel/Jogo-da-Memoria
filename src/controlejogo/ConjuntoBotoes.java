@@ -17,6 +17,7 @@ public class ConjuntoBotoes {
                 botao = new MyBotao(i);
                 this.listConjBotao.add(botao);
             }
+            System.out.println("botoes "+listConjBotao.size());
     }
     public MyBotao getBotao(int posBotao) {
         return (listConjBotao.get(posBotao));
@@ -29,7 +30,7 @@ public class ConjuntoBotoes {
     public void setRefConjBotao(int refConjBotao) {
         this.refConjBotao = refConjBotao;
     }
-    public void alterVisulBotao(int posBotao){
+    public void alterVisualBotao(int posBotao){
         String status = listConjBotao.get(posBotao).getStatus();
             switch(status){
                 case "NAOSELECIONADO" : //culta imagem
@@ -48,7 +49,8 @@ public class ConjuntoBotoes {
     public void zerarBotoes(){
         int i = 0;
             for(MyBotao botao : listConjBotao){
-                
+                listConjBotao.get(i).setStatus("NAOSELECIONADO");
+                alterVisualBotao(i);
                 i++;
             }
     }

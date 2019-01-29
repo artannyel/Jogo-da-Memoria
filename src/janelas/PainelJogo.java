@@ -102,18 +102,18 @@ public class PainelJogo extends JFrame{
        botao1.setBackground(null);
        this.painel.add(this.botao1);
        */
-        
+        sorteio(pares, largJanela, altJanela);
         this.painel.setVisible(true); // definir visibilidade dessa janela
         this.setResizable(false); // impedir que o tamanho original mude
         
         
-        sorteio(3, largJanela, altJanela);
+        
         
     }
     private int defTamPainel( int Lado){
         int tamanho;
         tamanho = ((Lado+1)*10)+(Lado*64);
-        System.out.println(tamanho);
+        //System.out.println(tamanho);
         return tamanho;
     }
     
@@ -121,8 +121,12 @@ public class PainelJogo extends JFrame{
         listConjBotoes = new ArrayList<>();
         
         for (int i = 0; i < pares; i++){
+            conjBut = new ConjuntoBotoes(i, 2);
+            listConjBotoes.add(conjBut);
             
         }
+        
+        System.out.println("Pares " + listConjBotoes.size());
         int posX = 10;
         for (int i = 0; i < largura; i++){
             int posY = 10;
