@@ -15,7 +15,7 @@ public class PainelJogo extends JFrame{
         this.painel.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        this.setSize(defTamPainel(lado), defTamPainel(lado)); // defiir o tamanho da janela PainelJogo
+        this.setSize(defTamPainel(lado), defTamPainel(lado)); // definir o tamanho da janela PainelJogo
         this.setLocationRelativeTo(null); //Centralizar a PainelJogo no meio
         
         this.painel.setVisible(true); // definir visibilidade dessa janela
