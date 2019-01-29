@@ -45,6 +45,14 @@ public class ConjuntoBotoes {
             }
     }
     
+    public void zerarBotoes(){
+        int i = 0;
+            for(MyBotao botao : listConjBotao){
+                
+                i++;
+            }
+    }
+    
     public void executarAcao(int posBotao){
         int ok = 0;
         listConjBotao.get(posBotao).setStatus("SELECIONADO");
