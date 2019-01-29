@@ -9,10 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import controlejogo.ConjuntoBotoes;
+import java.util.ArrayList;
 
 public class PainelJogo extends JFrame{
     private ActionListener acaoBotao;
     private List<ConjuntoBotoes> listConjBotoes;
+    private ConjuntoBotoes conjBotao;
     private int MAX_JOGADAS = 2;
     private int jogadas;
     private JPanel painel;
@@ -53,17 +55,19 @@ public class PainelJogo extends JFrame{
         this.painel.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        this.setSize(defTamPainel(largJanela), defTamPainel(altJanela)); // definir o tamanho da janela PainelJogo
+        this.setSize(defTamPainel(largJanela), defTamPainel(altJanela)+30); // definir o tamanho da janela PainelJogo
         this.setLocationRelativeTo(null); //Centralizar a PainelJogo no meio
         
-       botao1 = new MyBotao("");
-       botao1.setBounds(10, 10, 64, 64);
-       botao1.setBackground(null);
-       this.painel.add(this.botao1);
+       //botao1 = new MyBotao("");
+       //botao1.setBounds(10, 10, 64, 64);
+       //botao1.setBackground(null);
+       //this.painel.add(this.botao1);
         
         this.painel.setVisible(true); // definir visibilidade dessa janela
         this.setResizable(false); // impedir que o tamanho original mude
         
+        
+        sorteio(3, largJanela, altJanela);
         
     }
     private int defTamPainel( int Lado){
@@ -73,12 +77,23 @@ public class PainelJogo extends JFrame{
         return tamanho;
     }
     
-    private void sorteio (ConjuntoBotoes qtdPares){
-        // Quantidade de botoes
+    private void sorteio (int pares, int largura, int altura){
+        listConjBotoes = new ArrayList<>();
         
-        // Quantidade de controladores
-        // Colocar os botoes na tela
-        // Adaptar o tamanho da tela
-        // Randomizar o posicionamento dos botoes
+        for (int i = 0; i < pares; i++){
+            
+        }
+        int posX = 10;
+        for (int i = 0; i < largura; i++){
+            int posY = 10;
+            for (int j = 0; j < altura; j++){
+                botao1 = new MyBotao("");
+                botao1.setBounds(posX, posY, 64, 64);
+                posY += 74;
+                botao1.setBackground(null);
+                this.painel.add(this.botao1);
+            }
+            posX += 74;
+        }
     }
 }
