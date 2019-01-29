@@ -17,8 +17,8 @@ public class MenuJogo extends javax.swing.JFrame {
         pNumPares = new javax.swing.JPanel();
         txtNumero_pares = new javax.swing.JLabel();
         Rb_8_Pares = new javax.swing.JRadioButton();
-        Rb_16_Pares = new javax.swing.JRadioButton();
-        Rb_32_Pares = new javax.swing.JRadioButton();
+        Rb_10_Pares = new javax.swing.JRadioButton();
+        Rb_12_Pares = new javax.swing.JRadioButton();
         Rb_6_Pares = new javax.swing.JRadioButton();
         btIniciarJogo = new javax.swing.JButton();
         pNomeJogador = new javax.swing.JPanel();
@@ -35,11 +35,11 @@ public class MenuJogo extends javax.swing.JFrame {
         GrupoParesCartas.add(Rb_8_Pares);
         Rb_8_Pares.setText("8");
 
-        GrupoParesCartas.add(Rb_16_Pares);
-        Rb_16_Pares.setText("16");
+        GrupoParesCartas.add(Rb_10_Pares);
+        Rb_10_Pares.setText("10");
 
-        GrupoParesCartas.add(Rb_32_Pares);
-        Rb_32_Pares.setText("32");
+        GrupoParesCartas.add(Rb_12_Pares);
+        Rb_12_Pares.setText("12");
 
         GrupoParesCartas.add(Rb_6_Pares);
         Rb_6_Pares.setText("6");
@@ -56,9 +56,9 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(Rb_8_Pares)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(Rb_16_Pares)
+                .addComponent(Rb_10_Pares)
                 .addGap(33, 33, 33)
-                .addComponent(Rb_32_Pares)
+                .addComponent(Rb_12_Pares)
                 .addGap(55, 55, 55))
         );
         pNumParesLayout.setVerticalGroup(
@@ -67,8 +67,8 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pNumParesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Rb_8_Pares)
-                    .addComponent(Rb_16_Pares)
-                    .addComponent(Rb_32_Pares)
+                    .addComponent(Rb_10_Pares)
+                    .addComponent(Rb_12_Pares)
                     .addComponent(Rb_6_Pares)
                     .addComponent(txtNumero_pares))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -137,15 +137,15 @@ public class MenuJogo extends javax.swing.JFrame {
 
     private void btIniciarJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarJogoActionPerformed
         int QtdPares;
-            if( Rb_6_Pares.isSelected() || Rb_8_Pares.isSelected() || Rb_16_Pares.isSelected() || Rb_32_Pares.isSelected()){
+            if( Rb_6_Pares.isSelected() || Rb_8_Pares.isSelected() || Rb_10_Pares.isSelected() || Rb_12_Pares.isSelected()){
                     if(Rb_6_Pares.isSelected()){
                         QtdPares = Integer.parseInt(Rb_6_Pares.getText());
                     } else if(Rb_8_Pares.isSelected()){
                         QtdPares = Integer.parseInt(Rb_8_Pares.getText());
-                    } else if(Rb_16_Pares.isSelected()){
-                        QtdPares = Integer.parseInt(Rb_16_Pares.getText());
+                    } else if(Rb_10_Pares.isSelected()){
+                        QtdPares = Integer.parseInt(Rb_10_Pares.getText());
                     } else{
-                        QtdPares = Integer.parseInt(Rb_32_Pares.getText());
+                        QtdPares = Integer.parseInt(Rb_12_Pares.getText());
                     }
                 this.painelJogo = new PainelJogo(QtdPares);
                 System.out.println("QtdPares");
@@ -182,10 +182,10 @@ public class MenuJogo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CaixaTextoNome;
     private javax.swing.ButtonGroup GrupoParesCartas;
-    private javax.swing.JRadioButton Rb_16_Pares;
-    private javax.swing.JRadioButton Rb_32_Pares;
-    private javax.swing.JRadioButton Rb_6_Pares;
+    private javax.swing.JRadioButton Rb_10_Pares;
+    private javax.swing.JRadioButton Rb_12_Pares;
     private javax.swing.JRadioButton Rb_8_Pares;
+    private javax.swing.JRadioButton Rb_6_Pares;
     private javax.swing.JButton btIniciarJogo;
     private javax.swing.JPanel pNomeJogador;
     private javax.swing.JPanel pNumPares;
