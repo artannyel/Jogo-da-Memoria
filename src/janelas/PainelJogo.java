@@ -4,7 +4,9 @@ import controlejogo.ConjuntoBotoes;
 import controlejogo.MyBotao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +24,7 @@ public class PainelJogo extends JFrame{
     private JPanel painel;
     private MyBotao botao1;
     private ConjuntoBotoes conjBut;
+    private String caminhoAtual = new File("").getAbsolutePath();
     
     public PainelJogo( int pares){
         super("Jogo da Memoria");
@@ -32,19 +35,23 @@ public class PainelJogo extends JFrame{
 
         
         int largJanela, altJanela;
-            if(pares == 6){
-                largJanela = 4;
-                altJanela = 3;
-            } else if(pares == 8){
-                largJanela = 4;
-                altJanela = 4;
-            }  else if(pares == 10){
-                largJanela = 5;
-                altJanela = 4;
-            }  else{
-                largJanela = 6;
-                altJanela = 4;
-            }
+        if(pares == 6){
+            largJanela = 4;
+            altJanela = 3;
+            sorteiaImagens(6);
+        } else if(pares == 8){
+            largJanela = 4;
+            altJanela = 4;
+            sorteiaImagens(8);
+        }  else if(pares == 10){
+            largJanela = 5;
+            altJanela = 4;
+            sorteiaImagens(10);
+        }  else{
+            largJanela = 6;
+            altJanela = 4;
+            sorteiaImagens(12);
+        }
         acaoBotao = new  ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -115,5 +122,28 @@ public class PainelJogo extends JFrame{
             }
             posX += 74;
         }
+    }
+    
+    private ArrayList<String> sorteiaImagens(int tamanho){
+    	ArrayList<String> imagens = new ArrayList<String> ();
+    	try {
+    		File file = new File(caminhoAtual+"//imagens");
+    	    File[] arquivos = file.listFiles();
+    	    int i = 0;
+    	    for (File arquivo : arquivos) {
+    	    	if(arquivo.equals("interrogacao.png")) continue;
+		        imagens.add(arquivo.getName());
+		        imagens.add(arquivo.getName());
+		        i++;
+		        if(i==tamanho) break;
+    	    }
+    	    
+    	    
+    	}catch(Exception e){
+			System.out.println("Erro ao manipular o arquivo");
+		};
+		Collections.shuffle(imagens);
+		
+    	return imagens;
     }
 }
