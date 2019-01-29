@@ -55,6 +55,19 @@ public class PainelJogo extends JFrame{
                             if(!listSelecionados.contains(conjBot)){
                                 listSelecionados.add(conjBot);
                             }
+                            if(jogadas == MAX_JOGADAS){
+                                    //acabaram as jogadas
+                                        if(listSelecionados.size() > 1){
+
+                                                for(ConjuntoBotoes cb : listSelecionados){
+                                                    cb.zerarBotoes();
+                                                }
+                                        }
+                                    // zerar contado e lista dos botoes selecionados
+                                    jogadas = 0;
+                                    listSelecionados.clear();
+                                }
+                            break;
                             
                     }
             }
