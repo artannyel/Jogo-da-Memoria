@@ -144,7 +144,7 @@ public class PainelJogo extends JFrame{
     private ArrayList<String> sorteiaImagens(int tamanho){
     	ArrayList<String> imagens = new ArrayList<String> ();
     	try {
-    		File file = new File(caminhoAtual+"//imagens");
+    		File file = new File(caminhoAtual+"//src//imagens");
     	    File[] arquivos = file.listFiles();
     	    int i = 0;
     	    for (File arquivo : arquivos) {
