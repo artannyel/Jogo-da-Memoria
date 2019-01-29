@@ -5,22 +5,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConjuntoBotoes {
-    private List<MyBotao> listConjBotao;
+   // private List<MyBotao> listConjBotao;
     private int refConjBotao;
+    private MyBotao botao1 = new MyBotao() ;
+    private MyBotao botao2 = new MyBotao();
+    
+    public MyBotao getBotao1() {
+        return botao1;
+    }
+
+    public void setBotao1(MyBotao botao1) {
+        this.botao1 = botao1;
+    }
+
+    public MyBotao getBotao2() {
+        return botao2;
+    }
+
+    public void setBotao2(MyBotao botao2) {
+        this.botao2 = botao2;
+    }
+
+    public int getPosList() {
+        return posList;
+    }
+
+    public void setPosList(int posList) {
+        this.posList = posList;
+    }
+
     private int posList;
     
     public ConjuntoBotoes(int posList, int qtdPares ){
-        listConjBotao = new ArrayList();
         this.posList = posList;
-        MyBotao botao;
-            for(int i = 0; i < qtdPares; i++){
-                botao = new MyBotao(i);
-                this.listConjBotao.add(botao);
-            }
-            System.out.println("botoes "+listConjBotao.size());
-    }
-    public MyBotao getBotao(int posBotao) {
-        return (listConjBotao.get(posBotao));
+           
     }
     
     public int getRefConjBotao() {
@@ -30,41 +48,33 @@ public class ConjuntoBotoes {
     public void setRefConjBotao(int refConjBotao) {
         this.refConjBotao = refConjBotao;
     }
-    public void alterVisualBotao(int posBotao){
-        String status = listConjBotao.get(posBotao).getStatus();
+    public void alterVisualBotao(MyBotao botao){
+        String status = botao.getStatus();
             switch(status){
                 case "NAOSELECIONADO" : //culta imagem
-                    listConjBotao.get(posBotao).setBackground(null);
+                    botao.setBackground(null);
                     break;
                 case "SELECIONADO": //revelar imagem
-                    listConjBotao.get(posBotao).setBackground(Color.GREEN);
+                    botao.setBackground(Color.GREEN);
                     break;
                 case "PARENCONTRADO": //manter imagem revelada
-                    listConjBotao.get(posBotao).setBackground(Color.YELLOW);
-                    listConjBotao.get(posList).setEnabled(false); // metodo que deixa o botao ativo ou nao
+                   botao.setBackground(Color.YELLOW);
+                    botao.setEnabled(false); // metodo que deixa o botao ativo ou nao
                     break;
             }
     }
     
     public void zerarBotoes(){
-        int i = 0;
-            for(MyBotao botao : listConjBotao){
-                listConjBotao.get(i).setStatus("NAOSELECIONADO");
-                alterVisualBotao(i);
-                i++;
-            }
+        this.botao1.setStatus("NAOSELECIONADO");
+        this.botao2.setStatus("NAOSELECIONADO");
+        
     }
     
-    public void executarAcao(int posBotao){
-        int ok = 0;
-        listConjBotao.get(posBotao).setStatus("SELECIONADO");
-            for(MyBotao botao : listConjBotao){
-                if(listConjBotao.get(posBotao).getStatus() != "SELECIONADO"){
-                    ok ++;
-                }
-                 if( ok == listConjBotao.size()){
-                     
-                }
+    public void executarAcao(){
+            if(this.botao1.getStatus() == "SELECIONADO" && this.botao2.getStatus() == "SELECIONADO"  ){
+                alterVisualBotao(this.botao1);
+                alterVisualBotao(this.botao2);
+
             }
     }
     
