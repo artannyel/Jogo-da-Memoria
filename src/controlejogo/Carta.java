@@ -4,15 +4,15 @@ import javax.swing.JButton;
 import util.StatusCarta;
 
 public class Carta extends JButton {
-    private int idCarta;
-    private int idGrupoCarta;
+    private final int idCarta;
+    private final int idGrupoCarta;
     private StatusCarta status;
     
     public Carta(int idCarta, int idGrupoCarta, int posX, int posY){
         this.idCarta = idCarta;
         this.idGrupoCarta = idGrupoCarta;
         this.setBounds(posX, posY, 64, 64);
-        this.status = StatusCarta.SELECIONADO;
+        this.status = StatusCarta.NAO_SELECIONADO;
     }
 
     public void setStatus(StatusCarta status) {

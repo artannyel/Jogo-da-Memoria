@@ -18,6 +18,15 @@ public class GrupoCarta {
         this.imagem = imagem;
         carta1 = new Carta(0,this.idGrupoCarta, coord.get(0).getKey() , coord.get(0).getValue());
         carta2 = new Carta(1, this.idGrupoCarta, coord.get(1).getKey() , coord.get(1).getValue());
+
+    }
+     public GrupoCarta(int idGrupoCarta,  List<Pair<Integer, Integer>> coord){
+        this.idGrupoCarta = idGrupoCarta;
+        this.imagem = null;
+        carta1 = new Carta(0,this.idGrupoCarta, coord.get(0).getKey() , coord.get(0).getValue());
+        carta2 = new Carta(1, this.idGrupoCarta, coord.get(1).getKey() , coord.get(1).getValue());
+        System.out.println("Carta1: X-"+coord.get(0).getKey()+ "    Y-" + coord.get(0).getValue());
+        System.out.println("Carta1: X-"+coord.get(1).getKey()+ "    Y-" + coord.get(1).getValue());
     }
     
     public void setIdGrupoCarta(int idGrupoCarta) {
@@ -53,7 +62,7 @@ public class GrupoCarta {
     }
     
     //OCULTA AS CARTAS
-    private void zerarBotoes(){
+    public void zerarBotoes(){
         this.carta1.setStatus(StatusCarta.NAO_SELECIONADO);
         this.carta2.setStatus(StatusCarta.NAO_SELECIONADO);
     }
@@ -74,7 +83,6 @@ public class GrupoCarta {
                 this.viraCarta(carta1);
                 this.viraCarta(carta2);
             } else {
-                cartaMet.setStatus(StatusCarta.SELECIONADO);
                 this.viraCarta(cartaMet);
             }
     }
