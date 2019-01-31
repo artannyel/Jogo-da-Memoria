@@ -1,7 +1,7 @@
 package janelas;
 
-import controlejogo.ConjuntoBotoes;
-import controlejogo.MyBotao;
+import controlejogo.GrupoCarta;
+import controlejogo.Carta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -11,21 +11,23 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import controlejogo.ConjuntoBotoes;
+import controlejogo.GrupoCarta;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
 public class PainelJogo extends JFrame {
 
     private ActionListener acaoBotao;
-    private List<ConjuntoBotoes> listConjBotoes;
-    private ConjuntoBotoes conjBotao;
-    private List<ConjuntoBotoes> listSelecionados;
+    private List<GrupoCarta> listConjBotoes;
+    private GrupoCarta conjBotao;
+    private List<GrupoCarta> listSelecionados;
     private int MAX_JOGADAS = 2;
     private int jogadas;
     private JPanel painel;
-    private MyBotao botao1;
-    private ConjuntoBotoes conjBut;
+    private Carta botao1;
+    private Carta botao2;
+
+    private GrupoCarta conjBut;
     private String caminhoAtual = new File("").getAbsolutePath();
 
     public PainelJogo(int pares) {
@@ -55,11 +57,14 @@ public class PainelJogo extends JFrame {
         acaoBotao = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                int posBotao;
-                posBotao = ((MyBotao) ae.getSource()).getNumBotao();
-                for (ConjuntoBotoes conjBot : listConjBotoes) {
+                Carta botao;
+                botao = ((Carta) ae.getSource());
+                botao.setStatus("SELECIONADO");
+                System.out.println("boatoa acao");
+               System.out.println("Botao: " + botao.getNumBotao());
+                for (GrupoCarta conjBot : listConjBotoes) {
                     jogadas++;
-
+                    conjBot.executarAcao(botao.getNumBotao());
                     //verifica
                     if (!listSelecionados.contains(conjBot)) {
                         listSelecionados.add(conjBot);
@@ -68,7 +73,7 @@ public class PainelJogo extends JFrame {
                         //acabaram as jogadas
                         if (listSelecionados.size() > 1) {
 
-                            for (ConjuntoBotoes cb : listSelecionados) {
+                            for (GrupoCarta cb : listSelecionados) {
                                 cb.zerarBotoes();
                             }
                         }
@@ -82,6 +87,7 @@ public class PainelJogo extends JFrame {
             }
 
         };
+        
 
         //Configurando o painel
         this.painel = new JPanel();
@@ -91,10 +97,31 @@ public class PainelJogo extends JFrame {
 
         this.setSize(defTamPainel(largJanela), defTamPainel(altJanela) + 30); // definir o tamanho da janela PainelJogo
         this.setLocationRelativeTo(null); //Centralizar a PainelJogo no meio
+        
+        this.conjBotao = new GrupoCarta(0,2);
+        this.conjBotao.getBotao1().setBounds(10, 10, 64, 64);
+        this.conjBotao.getBotao1().addActionListener(acaoBotao);
+        this.painel.add(this.conjBotao.getBotao1());
+        
+        this.conjBotao.getBotao2().setBounds(84, 10, 64, 64);
+        this.painel.add(this.conjBotao.getBotao2());
+        this.conjBotao.getBotao2().addActionListener(acaoBotao);
+        
+        /*
+        this.botao1 = new Carta(112);
+        this.botao1.setBounds(10, 10, 64, 64);
+        this.painel.add(this.botao1);
+        this.botao1.addActionListener(acaoBotao);
+        
+        this.botao1 = new Carta(98);
+        this.botao1.setBounds(84, 10, 64, 64);
+        this.painel.add(this.botao1);
+        this.botao1.addActionListener(acaoBotao);
+        */
+        
         GridLayout g = new GridLayout(altJanela, largJanela, 10, 10);
-        this.setLayout(g);
-        this.painel.setLayout(g);
-        sorteio(pares, largJanela, altJanela);
+        //this.painel.setLayout(g);
+        //sorteio(pares, largJanela, altJanela);
         this.painel.setVisible(true); // definir visibilidade dessa janela
         this.setResizable(false); // impedir que o tamanho original mude
 
@@ -109,12 +136,14 @@ public class PainelJogo extends JFrame {
 
     private void sorteio(int pares, int largura, int altura) {
         listConjBotoes = new ArrayList<>();
-        MyBotao botao;
+        Carta botao;
 
         for (int i = 0; i < pares; i++) {
-            conjBut = new ConjuntoBotoes(i, 2);
+            conjBut = new GrupoCarta(i, 2);
             conjBut.getBotao1().setSize(64, 64);
+            conjBut.getBotao1().addActionListener(acaoBotao);
             conjBut.getBotao2().setSize(64, 64);
+            conjBut.getBotao1().addActionListener(acaoBotao);
             this.painel.add(conjBut.getBotao1());
             this.painel.add(conjBut.getBotao2());
 
@@ -126,13 +155,13 @@ public class PainelJogo extends JFrame {
 
     }
 
-    public void addBotao(int largura, int altura, MyBotao botao) {
+    public void addBotao(int largura, int altura, Carta botao) {
         int posX = 10;
         for (int i = 0; i < largura; i++) {
             int posY = 10;
             for (int j = 0; j < altura; j++) {
 
-                botao1 = new MyBotao("");
+                botao1 = new Carta("");
                 botao1.setBounds(posX, posY, 64, 64);
                 posY += 74;
                 botao1.setBackground(null);
