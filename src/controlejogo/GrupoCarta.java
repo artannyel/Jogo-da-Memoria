@@ -12,59 +12,25 @@ public class GrupoCarta {
     private ActionListener acaoCarta;
     private final Carta carta1;
     private final Carta carta2;
-    private final int MAX_JOGADAS = 2;
     private final ImageIcon imagem;
     private int idGrupoCarta;
-    private int jogadas;
-    private List<GrupoCarta> listGrupoCarta;
-    private List<GrupoCarta> listCartaSelecionadas;
 
-    public GrupoCarta(int idGrupoCarta, ImageIcon imagem, List<Pair<Integer, Integer>> posicao, List<GrupoCarta> listGrupoCarta, List<GrupoCarta> listCartaSelecionadas){
+    public GrupoCarta(int idGrupoCarta, ImageIcon imagem, List<Pair<Integer, Integer>> posicao, ActionListener acaoCarta){
         this.idGrupoCarta = idGrupoCarta;
         this.imagem = imagem;
-        this.listGrupoCarta = listGrupoCarta;  //set a lista de GrupoCartas
-        this.listCartaSelecionadas = listCartaSelecionadas; //set a Lista de CartaSelecionadas
-        carta1 = new Carta(0,this.idGrupoCarta, posicao.get(0).getKey() , posicao.get(0).getValue());
-        carta2 = new Carta(1, this.idGrupoCarta, posicao.get(1).getKey() , posicao.get(1).getValue());
-
+        carta1 = new Carta(0, this.idGrupoCarta, posicao.get(0).getKey() , posicao.get(0).getValue()); // Instanciar carta 1
+        carta2 = new Carta(1, this.idGrupoCarta, posicao.get(1).getKey() , posicao.get(1).getValue()); // instanciar carta 2
+        this.carta1.addActionListener(acaoCarta);
+        this.carta2.addActionListener(acaoCarta);
+        viraCarta(carta1);
+        viraCarta(carta2);
     }
-     public GrupoCarta(int idGrupoCarta,  List<Pair<Integer, Integer>> posicao, List<GrupoCarta> listGrupoCarta, List<GrupoCarta> listCartaSelecionadas){
+    
+     public GrupoCarta(int idGrupoCarta,  List<Pair<Integer, Integer>> posicao, ActionListener acaoCarta){
         this.idGrupoCarta = idGrupoCarta; //set o numero do grupo
         this.imagem = null; //set imagem do grupo
-        this.listGrupoCarta = listGrupoCarta; //set a lista de GrupoCartas
-        this.listCartaSelecionadas = listCartaSelecionadas; //set a Lista de CartaSelecionadas
         this.carta1 = new Carta(0, this.idGrupoCarta, posicao.get(0).getKey() , posicao.get(0).getValue()); //constructor Carta(idCarta, idGrupoCarta, posicaox, posicaoY)
         this.carta2 = new Carta(1, this.idGrupoCarta, posicao.get(1).getKey() , posicao.get(1).getValue()); //constructor Carta(idCarta, idGrupoCarta, posicaox, posicaoY)
-        
-         this.acaoCarta = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                jogadas++;
-                GrupoCarta gpCarta;
-                
-                Carta carta = ((Carta) ae.getSource()); //a variavel pegar a carta que foi selecionada
-                carta.setStatus(StatusCarta.SELECIONADO);//seta a carta como selecionada
-                gpCarta = listGrupoCarta.get(carta.getIdGrupoCarta()); //pegar o grupo da carta que foi acionada
-                gpCarta.executarAcao(carta);//executa uma acao de acordo com a carta selecionada 
-                
-                    if( !listCartaSelecionadas.contains(gpCarta)){ //se o grupoCarta nao tenha sido adicionado a lista
-                        listCartaSelecionadas.add(gpCarta);
-                    }
-                    
-                    if( jogadas == MAX_JOGADAS){ //se as todas as jogadas ja foram feitas
-                        
-                            if(listCartaSelecionadas.size() > 1){ //se mais de um GrupoCartas foi selecionado
-                                    
-                                    for(GrupoCarta gpc : listCartaSelecionadas){ //set a imagem padrao nas cartas selecionadas
-                                        gpc.zerarCartas();
-                                    }
-                            }
-                        jogadas = 0; //zerando jogadas
-                        listCartaSelecionadas.clear(); // zerando lista de carats ja selecionadas
-                    }
-            }
-        };
-        
         this.carta1.addActionListener(acaoCarta);
         this.carta2.addActionListener(acaoCarta);
         viraCarta(carta1);
