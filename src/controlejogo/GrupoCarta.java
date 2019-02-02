@@ -26,8 +26,6 @@ public class GrupoCarta {
         this.imagem = null;
         this.carta1 = new Carta(0,this.idGrupoCarta, coord.get(0).getKey() , coord.get(0).getValue());
         this.carta2 = new Carta(1, this.idGrupoCarta, coord.get(1).getKey() , coord.get(1).getValue());
-        this.carta1.setText("B"+idGrupoCarta);
-        this.carta2.setText("B"+idGrupoCarta);
         this.carta1.addActionListener(acaoCarta);
         this.carta2.addActionListener(acaoCarta);
         viraCarta(carta1);
@@ -57,15 +55,17 @@ public class GrupoCarta {
             switch(status){
                 case NAO_SELECIONADO : //EXIBE IMAGEM PADRAO
                     //System.out.println("Carta "+carta.getIdGrupoCarta()+"-"+carta.getIdCarta()+" NAO SELECIONADA");
-                   carta.setBackground(Color.RED);
+                    carta.setText("LUA");
+                    carta.setBackground(Color.cyan);
                     break;
                 case SELECIONADO : // EXIBE CARTA DO GRUPO
                     //System.out.println("Carta "+carta.getIdGrupoCarta()+"-"+carta.getIdCarta()+"CARTA SELECIONADA");
+                    carta.setText("B"+this.idGrupoCarta);
                     carta.setBackground(Color.GREEN);
                     break;
                 case PAR_ENCONTRADO: //MANTER EXIBIDA CARTA COM GRUPO JA ENCONTRADO
                     //System.out.println("Carta "+carta.getIdGrupoCarta()+"-"+carta.getIdCarta()+"PAR ENCONTRAO");
-                    carta.setBackground(Color.MAGENTA);
+                    carta.setBackground(Color.YELLOW);
                     carta.setText("Legal");
                     carta.setEnabled(false);// impede que a carta possa ser mexida novamente
                     
@@ -74,7 +74,7 @@ public class GrupoCarta {
     }
     
     //OCULTA AS CARTAS
-    public void zerarBotoes(){
+    public void zerarCartas(){
         this.carta1.setStatus(StatusCarta.NAO_SELECIONADO);
         viraCarta(carta1);
         
@@ -90,7 +90,6 @@ public class GrupoCarta {
     }
     
     public void executarAcao(Carta cartaMet){
-        //System.out.println("Acao Carta");
         
             if(this.carta1.getStatus() == StatusCarta.SELECIONADO && this.carta2.getStatus() == StatusCarta.SELECIONADO ){
                 this.carta1.setStatus(StatusCarta.PAR_ENCONTRADO);

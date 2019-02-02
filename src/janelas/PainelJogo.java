@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import controlejogo.GrupoCarta;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.util.Pair;
 import util.StatusCarta;
 
@@ -55,7 +57,7 @@ public class PainelJogo extends JFrame {
                                     
                                     //pecorrer os grupos que foram selecionados
                                     for(GrupoCarta gpc : listSelecionados){
-                                        gpc.zerarBotoes();
+                                        gpc.zerarCartas();
                                     }
                             }
                         jogadas = 0;
@@ -73,9 +75,46 @@ public class PainelJogo extends JFrame {
         this.setLocationRelativeTo(null); //Centralizar a PainelJogo no meio
 
         addCartas(qtdPares); // adicionar cartas no painel
-
         this.painel.setVisible(true); // definir visibilidade dessa janela
+    
+        
         this.setResizable(false); // impedir que o tamanho original mude
+        System.out.println("antes tempo()");
+        
+        Thread iniciarJogo = new Thread(){
+            public void run(){
+                //painel.setVisible(true);
+                //System.out.println("painel visivel");
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("Inicio pause");
+                        try { Thread.sleep(5000); } catch (Exception e) {}
+                            for(GrupoCarta gpc : listGrupoCarta){
+                                gpc.zerarCartas();
+                            }
+                        System.out.println("fim pause");
+                        
+                    }
+                });
+            }
+        };
+        iniciarJogo.start();
+        
+        System.out.println("pos tempo()");
+    }
+    
+    
+    private void tempo(){
+        System.out.println("tempo");
+                            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PainelJogo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            for(GrupoCarta gpc : this.listGrupoCarta){
+                gpc.zerarCartas();
+            }
     }
     
     private void addCartas(int qtdPares){
@@ -112,13 +151,14 @@ public class PainelJogo extends JFrame {
                 this.listGrupoCarta.add(gpCarta); // adicionando grupo na lista de grupo de cartas
                 posicaoCartas.clear();  //impando lista de posicoes que sera usado no contrusctor de GrupoCarta
             }
+
     }
     
     
 
     private int calcTam(int qtdCarta) {
         int tamanhoRt;
-        tamanhoRt = ((qtdCarta + 1) * 10) + (qtdCarta* 64);
+        tamanhoRt = ((qtdCarta + 1) * 10) + (qtdCarta* 64); //calculo da dimensao da janela
         return tamanhoRt;
     }
 
