@@ -27,17 +27,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
-                      <Component id="btIniciarJogo" min="-2" pref="139" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pNumPares" min="-2" max="-2" attributes="0"/>
-                          <Component id="pNomeJogador" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="pNumPares" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                          <Component id="btIniciarJogo" min="-2" pref="139" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="pNomeJogador" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -50,9 +50,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="116" max="32767" attributes="0"/>
               <Component id="pNomeJogador" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="pNumPares" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="btIniciarJogo" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -75,15 +75,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="txtNumero_pares" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="Rb_6_Pares" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="Rb_8_Pares" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
-                  <Component id="Rb_16_Pares" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="Rb_32_Pares" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="Rb_10_Pares" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="Rb_12_Pares" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="55" max="32767" attributes="0"/>
+                  <Component id="Rb_14_Pares" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -93,9 +93,9 @@
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Rb_8_Pares" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Rb_16_Pares" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Rb_32_Pares" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Rb_6_Pares" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Rb_10_Pares" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Rb_12_Pares" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Rb_14_Pares" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNumero_pares" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="16" max="32767" attributes="0"/>
@@ -120,28 +120,28 @@
             <Property name="text" type="java.lang.String" value="8"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="Rb_16_Pares">
+        <Component class="javax.swing.JRadioButton" name="Rb_10_Pares">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="GrupoParesCartas"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="16"/>
+            <Property name="text" type="java.lang.String" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="Rb_32_Pares">
+        <Component class="javax.swing.JRadioButton" name="Rb_12_Pares">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="GrupoParesCartas"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="32"/>
+            <Property name="text" type="java.lang.String" value="12"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="Rb_6_Pares">
+        <Component class="javax.swing.JRadioButton" name="Rb_14_Pares">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="GrupoParesCartas"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="6"/>
+            <Property name="text" type="java.lang.String" value="14"/>
           </Properties>
         </Component>
       </SubComponents>

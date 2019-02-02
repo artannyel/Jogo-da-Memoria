@@ -1,6 +1,7 @@
 package controlejogo;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javafx.util.Pair;
 import javax.swing.ImageIcon;
@@ -20,13 +21,19 @@ public class GrupoCarta {
         carta2 = new Carta(1, this.idGrupoCarta, coord.get(1).getKey() , coord.get(1).getValue());
 
     }
-     public GrupoCarta(int idGrupoCarta,  List<Pair<Integer, Integer>> coord){
+     public GrupoCarta(int idGrupoCarta,  List<Pair<Integer, Integer>> coord, ActionListener acaoCarta){
         this.idGrupoCarta = idGrupoCarta;
         this.imagem = null;
-        carta1 = new Carta(0,this.idGrupoCarta, coord.get(0).getKey() , coord.get(0).getValue());
-        carta2 = new Carta(1, this.idGrupoCarta, coord.get(1).getKey() , coord.get(1).getValue());
-        System.out.println("Carta1: X-"+coord.get(0).getKey()+ "    Y-" + coord.get(0).getValue());
-        System.out.println("Carta1: X-"+coord.get(1).getKey()+ "    Y-" + coord.get(1).getValue());
+        this.carta1 = new Carta(0,this.idGrupoCarta, coord.get(0).getKey() , coord.get(0).getValue());
+        this.carta2 = new Carta(1, this.idGrupoCarta, coord.get(1).getKey() , coord.get(1).getValue());
+        this.carta1.setText("B"+idGrupoCarta);
+        this.carta2.setText("B"+idGrupoCarta);
+        this.carta1.addActionListener(acaoCarta);
+        this.carta2.addActionListener(acaoCarta);
+        viraCarta(carta1);
+        viraCarta(carta2);
+        //System.out.println("Carta1: X-"+coord.get(0).getKey()+ "    Y-" + coord.get(0).getValue());
+        //System.out.println("Carta1: X-"+coord.get(1).getKey()+ "    Y-" + coord.get(1).getValue());
     }
     
     public void setIdGrupoCarta(int idGrupoCarta) {
@@ -49,14 +56,19 @@ public class GrupoCarta {
         StatusCarta status = carta.getStatus();
             switch(status){
                 case NAO_SELECIONADO : //EXIBE IMAGEM PADRAO
-                   carta.setBackground(null);
+                    //System.out.println("Carta "+carta.getIdGrupoCarta()+"-"+carta.getIdCarta()+" NAO SELECIONADA");
+                   carta.setBackground(Color.RED);
                     break;
                 case SELECIONADO : // EXIBE CARTA DO GRUPO
+                    //System.out.println("Carta "+carta.getIdGrupoCarta()+"-"+carta.getIdCarta()+"CARTA SELECIONADA");
                     carta.setBackground(Color.GREEN);
                     break;
                 case PAR_ENCONTRADO: //MANTER EXIBIDA CARTA COM GRUPO JA ENCONTRADO
-                    carta.setBackground(Color.YELLOW);
-                    carta.setEnabled(false); // impede que a carta possa ser mexida novamente
+                    //System.out.println("Carta "+carta.getIdGrupoCarta()+"-"+carta.getIdCarta()+"PAR ENCONTRAO");
+                    carta.setBackground(Color.MAGENTA);
+                    carta.setText("Legal");
+                    carta.setEnabled(false);// impede que a carta possa ser mexida novamente
+                    
                     break;
             }
     }
@@ -64,7 +76,10 @@ public class GrupoCarta {
     //OCULTA AS CARTAS
     public void zerarBotoes(){
         this.carta1.setStatus(StatusCarta.NAO_SELECIONADO);
+        viraCarta(carta1);
+        
         this.carta2.setStatus(StatusCarta.NAO_SELECIONADO);
+        viraCarta(carta2);
     }
     
     private Carta getCarta( int idCarta){
@@ -75,13 +90,13 @@ public class GrupoCarta {
     }
     
     public void executarAcao(Carta cartaMet){
-        System.out.println("Acao Carta");
+        //System.out.println("Acao Carta");
         
             if(this.carta1.getStatus() == StatusCarta.SELECIONADO && this.carta2.getStatus() == StatusCarta.SELECIONADO ){
                 this.carta1.setStatus(StatusCarta.PAR_ENCONTRADO);
                 this.carta2.setStatus(StatusCarta.PAR_ENCONTRADO);                
-                this.viraCarta(carta1);
-                this.viraCarta(carta2);
+                this.viraCarta(this.carta1);
+                this.viraCarta(this.carta2);
             } else {
                 this.viraCarta(cartaMet);
             }

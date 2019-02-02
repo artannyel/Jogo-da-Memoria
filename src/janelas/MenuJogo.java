@@ -19,7 +19,7 @@ public class MenuJogo extends javax.swing.JFrame {
         Rb_8_Pares = new javax.swing.JRadioButton();
         Rb_10_Pares = new javax.swing.JRadioButton();
         Rb_12_Pares = new javax.swing.JRadioButton();
-        Rb_6_Pares = new javax.swing.JRadioButton();
+        Rb_14_Pares = new javax.swing.JRadioButton();
         btIniciarJogo = new javax.swing.JButton();
         pNomeJogador = new javax.swing.JPanel();
         CaixaTextoNome = new javax.swing.JTextField();
@@ -41,8 +41,8 @@ public class MenuJogo extends javax.swing.JFrame {
         GrupoParesCartas.add(Rb_12_Pares);
         Rb_12_Pares.setText("12");
 
-        GrupoParesCartas.add(Rb_6_Pares);
-        Rb_6_Pares.setText("6");
+        GrupoParesCartas.add(Rb_14_Pares);
+        Rb_14_Pares.setText("14");
 
         javax.swing.GroupLayout pNumParesLayout = new javax.swing.GroupLayout(pNumPares);
         pNumPares.setLayout(pNumParesLayout);
@@ -51,15 +51,15 @@ public class MenuJogo extends javax.swing.JFrame {
             .addGroup(pNumParesLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(txtNumero_pares)
-                .addGap(37, 37, 37)
-                .addComponent(Rb_6_Pares)
-                .addGap(29, 29, 29)
+                .addGap(32, 32, 32)
                 .addComponent(Rb_8_Pares)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(Rb_10_Pares)
-                .addGap(33, 33, 33)
+                .addGap(48, 48, 48)
                 .addComponent(Rb_12_Pares)
-                .addGap(55, 55, 55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(Rb_14_Pares)
+                .addContainerGap())
         );
         pNumParesLayout.setVerticalGroup(
             pNumParesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -69,7 +69,7 @@ public class MenuJogo extends javax.swing.JFrame {
                     .addComponent(Rb_8_Pares)
                     .addComponent(Rb_10_Pares)
                     .addComponent(Rb_12_Pares)
-                    .addComponent(Rb_6_Pares)
+                    .addComponent(Rb_14_Pares)
                     .addComponent(txtNumero_pares))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -109,14 +109,14 @@ public class MenuJogo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(btIniciarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pNumPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pNumPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(177, 177, 177)
+                            .addComponent(btIniciarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(35, 35, 35)
                             .addComponent(pNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -125,9 +125,9 @@ public class MenuJogo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(116, Short.MAX_VALUE)
                 .addComponent(pNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pNumPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addComponent(btIniciarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -137,18 +137,17 @@ public class MenuJogo extends javax.swing.JFrame {
 
     private void btIniciarJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarJogoActionPerformed
         int QtdPares;
-            if( Rb_6_Pares.isSelected() || Rb_8_Pares.isSelected() || Rb_10_Pares.isSelected() || Rb_12_Pares.isSelected()){
-                    if(Rb_6_Pares.isSelected()){
-                        QtdPares = Integer.parseInt(Rb_6_Pares.getText());
-                    } else if(Rb_8_Pares.isSelected()){
+            if( Rb_8_Pares.isSelected() || Rb_10_Pares.isSelected() || Rb_12_Pares.isSelected() || Rb_14_Pares.isSelected()){
+                     if(Rb_8_Pares.isSelected()){
                         QtdPares = Integer.parseInt(Rb_8_Pares.getText());
                     } else if(Rb_10_Pares.isSelected()){
                         QtdPares = Integer.parseInt(Rb_10_Pares.getText());
-                    } else{
+                    } else if(Rb_12_Pares.isSelected()){
                         QtdPares = Integer.parseInt(Rb_12_Pares.getText());
+                    } else {
+                        QtdPares = Integer.parseInt(Rb_14_Pares.getText());
                     }
                 this.painelJogo = new PainelJogo(QtdPares);
-                System.out.println("QtdPares");
                 this.painelJogo.setVisible(true);
                 this.hide();
             }
@@ -184,8 +183,8 @@ public class MenuJogo extends javax.swing.JFrame {
     private javax.swing.ButtonGroup GrupoParesCartas;
     private javax.swing.JRadioButton Rb_10_Pares;
     private javax.swing.JRadioButton Rb_12_Pares;
+    private javax.swing.JRadioButton Rb_14_Pares;
     private javax.swing.JRadioButton Rb_8_Pares;
-    private javax.swing.JRadioButton Rb_6_Pares;
     private javax.swing.JButton btIniciarJogo;
     private javax.swing.JPanel pNomeJogador;
     private javax.swing.JPanel pNumPares;
