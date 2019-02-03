@@ -11,7 +11,7 @@ public class Carta extends JButton {
     public Carta(int idCarta, int idGrupoCarta, int posX, int posY){
         this.idCarta = idCarta;
         this.idGrupoCarta = idGrupoCarta;
-        this.setBounds(posX, posY, 64, 64);
+        this.setBounds(posX,posY, 64, 64);
         this.status = StatusCarta.SELECIONADO;
     }
 

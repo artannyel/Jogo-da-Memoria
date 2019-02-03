@@ -1,0 +1,6 @@
+https://www.caelum.com.br/apostila-java-orientacao-objetos/apendice-programacao-concorrente-e-threads/#threads
+http://www.guj.com.br/t/runnable/98875/4
+http://www.guj.com.br/t/como-fazer-o-programa-esperar/229089/2
+https://pt.wikibooks.org/wiki/Java/Thread
+http://www.guj.com.br/t/thread-sleep-travando-programinha/77357/2
+http://www.guj.com.br/t/o-que-significa/76837/3
