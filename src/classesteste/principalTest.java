@@ -5,6 +5,7 @@ public class principalTest {
         Janela1  jan1 = new Janela1();
         jan1.setVisible(true);
         System.out.println("main");
+       
     }
     
 }

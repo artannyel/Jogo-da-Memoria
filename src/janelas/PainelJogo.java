@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import util.StatusCarta;
-import util.Temporizador;
 
 public class PainelJogo extends JFrame {
 

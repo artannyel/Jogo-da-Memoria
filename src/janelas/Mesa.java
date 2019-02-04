@@ -9,12 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.util.Pair;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import util.StatusCarta;
@@ -28,37 +25,17 @@ public class Mesa  extends javax.swing.JDialog{
     private int jogadas; // contador de jogadas realizadas
     private final JPanel painel;
     private String dirProjeto = new File("").getAbsolutePath();
-    private int partida ; // paramentro nova partida/ reiniciar a ultima
-
-    public int getPartida() {
-        return partida = 0;
-    }
+    private int partida = 0 ; // paramentro nova partida/ reiniciar a ultima
+    private final Thread tempoEspera;
+    private Thread pause;
     
     public Mesa(int qtdPares,java.awt.Frame parent, boolean modal){
         super(parent, modal);
-        this.setTitle("Joo da Memoria"); //setar um titulo a JDialog
-        
+        this.setTitle("Jogo da Memoria"); //setar um titulo a JDialog
         listCartaEncontrado = new ArrayList<>();
         listGrupoCarta = new ArrayList<>(); //instanciando uma lista para guardar os grupos de cartas
         listSelecionados = new ArrayList<>(); //instancia uma lista para armazenar as cartas que ja foram selecionadas
-        dirProjeto += "\\src\\imagens\\"; //indicar o diretorio on estao s pacotes de imagens
-        
-        Thread tempoEspera = new Thread(){
-            public void run(){
-                    java.awt.EventQueue.invokeLater( new Runnable() {
-                        @Override
-                        public void run() {
-                            System.out.println("Inicio pause jogo");
-                            try { Thread.sleep(3000); } catch (Exception e) {}  //pausar o programa
-                            for(GrupoCarta gpc : listGrupoCarta){   //pecorrer todas as cartas selecionadas
-                                gpc.zerarCartas();  //oculta a imagem de todas as cartas
-                            }
-                            System.out.println("fim pause jogo");
-                        }
-                    });
-            
-            }
-        };
+        dirProjeto += "\\src\\imagens\\"; //indicar o diretorio onde estao os pacotes de imagens
         
         this.acaoCarta = new ActionListener() {
             @Override
@@ -79,26 +56,52 @@ public class Mesa  extends javax.swing.JDialog{
                     if( !listSelecionados.contains(gpCarta)){ //se  a carta selecionada for de um grupo diferente do da lista de selecionados
                         listSelecionados.add(gpCarta);
                     }
-                    if( jogadas == MAX_JOGADAS){ // se todas as jogadas possiveis ja foram feitas
-                            if(listSelecionados.size() > 1){ // se mais de um grupo estiver selecionado
+                   int cnt = listSelecionados.size();
+                System.out.println("antes Tam Selecionados: " + listSelecionados.size());
+                    pause = new Thread(){
+                            public void run(){
+                            this.setName("tempo");
+                            setEnabled(false);
+                                System.out.println("pause inicio");
+                                try { 
+                                    Thread.sleep(1500);
+                                } catch (Exception e) {}  //pausar o programa
+                                System.out.println("Thread Tam Selecionados: " + listSelecionados.size());
                                     for(GrupoCarta gpc : listSelecionados){ //virar para baixo as cartas selecionadas
+                                        System.out.println("zerando lista selecionados");
                                         gpc.zerarCartas();
                                     }
+                                    listSelecionados.clear(); 
+                                System.out.println("thread Tam Selecionados: " + cnt);
+                                System.out.println("pause fim");
+                                setEnabled(true);
+                            }
+                                
+                        };
+                    System.out.println("pos Tam Selecionados: " + listSelecionados.size());
+                    if( jogadas == MAX_JOGADAS){ // se todas as jogadas possiveis ja foram feitas
+                        //System.out.println("Thread: " + Thread.currentThread().getName());
+                            if(listSelecionados.size() > 1){ // se mais de um grupo estiver selecionado
+                                System.out.println("antes pause");
+                                pause.start();
+                                System.out.println("pos pause");
+                                System.out.println("PAUSE: " +  pause.getState());
+                                    /*for(GrupoCarta gpc : listSelecionados){ //virar para baixo as cartas selecionadas
+                                        gpc.zerarCartas();
+                                    }*/
                             } else {
                                 listCartaEncontrado.remove(gpCarta);
-                                System.out.println("Pares restantes: " + listCartaEncontrado.size());
+                                //System.out.println("Pares restantes: " + listCartaEncontrado.size());
                             }
                         jogadas = 0; //zerar o contador de jogadas realizadas
-                        listSelecionados.clear(); //zerar a lista de cartas selecionadas
+                        //listSelecionados.clear(); //zerar a lista de cartas selecionadas
                     }
                     
                     if(listCartaEncontrado.isEmpty()){
                         System.out.println("todos pares ja foram encontrados");
                         FimJogo fimJogo = new FimJogo(parent,true);
                         setEnabled(false); //desativa a Janela atual
-                        System.out.println("chamando Fim de Jogo");
                         fimJogo.setVisible(true); //deixa visivel a janela de fim de jogo
-                        System.out.println("janela FIM fechada");
                         partida = fimJogo.getPartida();
                         dispose();
                     }
@@ -112,24 +115,31 @@ public class Mesa  extends javax.swing.JDialog{
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setSize( calcTam((int) (qtdPares*0.5)), calcTam(4)+30); // definir o tamanho da janela PainelJogo (largura, altura)
         this.setLocationRelativeTo(null); //Centralizar a PainelJogo no meio
-        
         addCartas(qtdPares); // adicionar cartas no painel
-        
         this.painel.setVisible(true); // definir visibilidade dessa janela
         this.setResizable(false); // impedir que o tamanho original mude
         
-            //System.out.println("antes");
-            tempoEspera.start();
-            //System.out.println("depois");
-        /*System.out.println("Inicio pause jogo");
-            try { Thread.sleep(3000); } catch (Exception e) {}  //pausar o programa
+        tempoEspera = new Thread(){
+            public void run(){
+                this.setName("tempoEspera");
+                System.out.println("leo inicio");
+                try { 
+                    Thread.sleep(3000);
+                    System.out.println("qualquer coisa");
+                } catch (Exception e) {}  //pausar o programa
                 for(GrupoCarta gpc : listGrupoCarta){   //pecorrer todas as cartas selecionadas
                     gpc.zerarCartas();  //oculta a imagem de todas as cartas
-                    System.out.println("desvirando...");
                 }
-        System.out.println("fim pause jogo");*/
-                        
+               setEnabled(true);
+                System.out.println("leo fim");
+            }
+        };
+        
+        this.setEnabled(false);
+        tempoEspera.start();
     }
+    
+
     
     private void addCartas(int qtdPares){
         List<Pair<Integer,Integer>> listPosicoes = new ArrayList();
@@ -193,6 +203,9 @@ public class Mesa  extends javax.swing.JDialog{
         };
         Collections.shuffle(listImagens); //embaralhar as lista de imagens
         return listImagens;
+    }
+    public int getPartida() {
+        return partida ;
     }
 
 }
