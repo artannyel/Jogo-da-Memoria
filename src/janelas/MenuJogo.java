@@ -1,7 +1,10 @@
 package janelas;
 
+import janelas.PainelJogo;
+
 public class MenuJogo extends javax.swing.JFrame {
      private PainelJogo painelJogo;
+     private Mesa mesa;
 
     public MenuJogo() {
         initComponents();
@@ -136,20 +139,23 @@ public class MenuJogo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btIniciarJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarJogoActionPerformed
-        int QtdPares;
+        int qtdPares;
             if( Rb_8_Pares.isSelected() || Rb_10_Pares.isSelected() || Rb_12_Pares.isSelected() || Rb_14_Pares.isSelected()){
                      if(Rb_8_Pares.isSelected()){
-                        QtdPares = Integer.parseInt(Rb_8_Pares.getText());
+                        qtdPares = Integer.parseInt(Rb_8_Pares.getText());
                     } else if(Rb_10_Pares.isSelected()){
-                        QtdPares = Integer.parseInt(Rb_10_Pares.getText());
+                        qtdPares = Integer.parseInt(Rb_10_Pares.getText());
                     } else if(Rb_12_Pares.isSelected()){
-                        QtdPares = Integer.parseInt(Rb_12_Pares.getText());
+                        qtdPares = Integer.parseInt(Rb_12_Pares.getText());
                     } else {
-                        QtdPares = Integer.parseInt(Rb_14_Pares.getText());
+                        qtdPares = Integer.parseInt(Rb_14_Pares.getText());
                     }
-                this.painelJogo = new PainelJogo(QtdPares);
-                this.painelJogo.setVisible(true);
-                this.hide();
+                this.mesa = new Mesa(qtdPares,this,true);
+                this.dispose(); //deixa invisivel a tela
+                mesa.setVisible(true); // deixa visivel a mesa onde fica disposta as cartas
+                System.out.println("menu");
+                this.GrupoParesCartas.clearSelection();
+                this.setVisible(true); //deixa o menu novamente visivel
             }
 
     }//GEN-LAST:event_btIniciarJogoActionPerformed

@@ -21,7 +21,7 @@ public class GrupoCarta {
     public GrupoCarta(int idGrupoCarta, ImageIcon imagem, List<Pair<Integer, Integer>> posicao, ActionListener acaoCarta){
         this.idGrupoCarta = idGrupoCarta;
         this.imgGrupo = imagem;
-        this.imgPadrao = new ImageIcon(urlImagem+"\\src\\imagens\\padrao\\interrogacao.png");
+        this.imgPadrao = new ImageIcon(urlImagem+"\\src\\imagens\\padrao\\question_block.png");
         carta1 = new Carta(0, this.idGrupoCarta, posicao.get(0).getKey() , posicao.get(0).getValue()); // Instanciar carta 1
         carta2 = new Carta(1, this.idGrupoCarta, posicao.get(1).getKey() , posicao.get(1).getValue()); // instanciar carta 2
         this.carta1.addActionListener(acaoCarta);
@@ -66,7 +66,7 @@ public class GrupoCarta {
                     carta.setIcon(this.imgPadrao);
                     break;
                 case SELECIONADO : // EXIBE CARTA DO GRUPO
-                    carta.setBackground(Color.GREEN);
+                    carta.setBackground(Color.WHITE);
                     carta.setIcon(imgGrupo);
                     break;
                 case PAR_ENCONTRADO: //MANTER EXIBIDA CARTA COM GRUPO JA ENCONTRADO
