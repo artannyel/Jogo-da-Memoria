@@ -1,5 +1,7 @@
-package janelas;
+package principal;
 
+import janelas.Mesa;
+import janelas.PainelJogo;
 import janelas.PainelJogo;
 
 public class MenuJogo extends javax.swing.JFrame {
@@ -155,7 +157,13 @@ public class MenuJogo extends javax.swing.JFrame {
                 mesa.setVisible(true); // deixa visivel a mesa onde fica disposta as cartas
                 System.out.println("menu");
                 this.GrupoParesCartas.clearSelection();
-                this.setVisible(true); //deixa o menu novamente visivel
+                    if(mesa.getPartida() == 0){
+                        this.setVisible(true); //deixa o menu novamente visivel
+                    } else {
+                        this.mesa = new Mesa(qtdPares,this,true);
+                        mesa.setVisible(true);
+                    }
+                
             }
 
     }//GEN-LAST:event_btIniciarJogoActionPerformed

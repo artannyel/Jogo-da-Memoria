@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javafx.util.Pair;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import util.StatusCarta;
@@ -22,15 +23,22 @@ public class Mesa  extends javax.swing.JDialog{
     private final ActionListener acaoCarta;
     private List<GrupoCarta> listGrupoCarta;
     private List<GrupoCarta> listSelecionados;
+    private List<GrupoCarta> listCartaEncontrado;
     private int MAX_JOGADAS = 2;
     private int jogadas; // contador de jogadas realizadas
     private final JPanel painel;
     private String dirProjeto = new File("").getAbsolutePath();
+    private int partida ; // paramentro nova partida/ reiniciar a ultima
+
+    public int getPartida() {
+        return partida = 0;
+    }
     
     public Mesa(int qtdPares,java.awt.Frame parent, boolean modal){
         super(parent, modal);
         this.setTitle("Joo da Memoria"); //setar um titulo a JDialog
         
+        listCartaEncontrado = new ArrayList<>();
         listGrupoCarta = new ArrayList<>(); //instanciando uma lista para guardar os grupos de cartas
         listSelecionados = new ArrayList<>(); //instancia uma lista para armazenar as cartas que ja foram selecionadas
         dirProjeto += "\\src\\imagens\\"; //indicar o diretorio on estao s pacotes de imagens
@@ -57,31 +65,43 @@ public class Mesa  extends javax.swing.JDialog{
             public void actionPerformed(ActionEvent ae) {
                 Carta carta = ((Carta) ae.getSource()); //a variavel pegar a carta que foi selecionada
                 GrupoCarta gpCarta; //Variavel para de auxilio na execurção da ação
-                System.out.println("Grupo: " + carta.getIdGrupoCarta() +"   carta: " + carta.getIdCarta());
+                //System.out.println("Grupo: " + carta.getIdGrupoCarta() +"   carta: " + carta.getIdCarta());
                     if(!listSelecionados.isEmpty()){
                         //System.out.println("nao estar vazio");
                         gpCarta = listSelecionados.get(0);
-                        System.out.println("Grupo0: " + gpCarta.getCarta1().getIdGrupoCarta() +"   carta1: " + gpCarta.getCarta1().getIdCarta());
-                        System.out.println("Grupo0: " + gpCarta.getCarta2().getIdGrupoCarta() +"   carta2: " + gpCarta.getCarta2().getIdCarta());
+                        //System.out.println("Grupo0: " + gpCarta.getCarta1().getIdGrupoCarta() +"   carta1: " + gpCarta.getCarta1().getIdCarta());
+                        //System.out.println("Grupo0: " + gpCarta.getCarta2().getIdGrupoCarta() +"   carta2: " + gpCarta.getCarta2().getIdCarta());
                     }
-                                gpCarta = listGrupoCarta.get(carta.getIdGrupoCarta()); //pegar o grupo da carta que foi acionada
-                                jogadas++;
-                                carta.setStatus(StatusCarta.SELECIONADO);//seta a carta como selecionada
-                                gpCarta.executarAcao(carta);//executa uma acao de acordo com a carta selecionada 
-                                    if( !listSelecionados.contains(gpCarta)){ //se  a carta selecionada for de um grupo diferente do da lista de selecionados
-                                        listSelecionados.add(gpCarta);
+                gpCarta = listGrupoCarta.get(carta.getIdGrupoCarta()); //pegar o grupo da carta que foi acionada
+                jogadas++;
+                carta.setStatus(StatusCarta.SELECIONADO);//seta a carta como selecionada
+                gpCarta.executarAcao(carta);//executa uma acao de acordo com a carta selecionada 
+                    if( !listSelecionados.contains(gpCarta)){ //se  a carta selecionada for de um grupo diferente do da lista de selecionados
+                        listSelecionados.add(gpCarta);
+                    }
+                    if( jogadas == MAX_JOGADAS){ // se todas as jogadas possiveis ja foram feitas
+                            if(listSelecionados.size() > 1){ // se mais de um grupo estiver selecionado
+                                    for(GrupoCarta gpc : listSelecionados){ //virar para baixo as cartas selecionadas
+                                        gpc.zerarCartas();
                                     }
-                                    if( jogadas == MAX_JOGADAS){ // se todas as jogadas possiveis ja foram feitas
-                                            if(listSelecionados.size() > 1){ // se mais de um grupo estiver selecionado
-
-                                                    for(GrupoCarta gpc : listSelecionados){ //virar para baixo as cartas selecionadas
-                                                        gpc.zerarCartas();
-                                                    }
-                                            }
-                                        jogadas = 0; //zerar o contador de jogadas realizadas
-                                        listSelecionados.clear(); //zerar a lista de cartas selecionadas
-                                    }
-                System.out.println("Jogadas: " + jogadas);
+                            } else {
+                                listCartaEncontrado.remove(gpCarta);
+                                System.out.println("Pares restantes: " + listCartaEncontrado.size());
+                            }
+                        jogadas = 0; //zerar o contador de jogadas realizadas
+                        listSelecionados.clear(); //zerar a lista de cartas selecionadas
+                    }
+                    
+                    if(listCartaEncontrado.isEmpty()){
+                        System.out.println("todos pares ja foram encontrados");
+                        FimJogo fimJogo = new FimJogo(parent,true);
+                        setEnabled(false); //desativa a Janela atual
+                        System.out.println("chamando Fim de Jogo");
+                        fimJogo.setVisible(true); //deixa visivel a janela de fim de jogo
+                        System.out.println("janela FIM fechada");
+                        partida = fimJogo.getPartida();
+                        dispose();
+                    }
             }
         };
         
@@ -99,7 +119,7 @@ public class Mesa  extends javax.swing.JDialog{
         this.setResizable(false); // impedir que o tamanho original mude
         
             //System.out.println("antes");
-            //tempoEspera.start();
+            tempoEspera.start();
             //System.out.println("depois");
         /*System.out.println("Inicio pause jogo");
             try { Thread.sleep(3000); } catch (Exception e) {}  //pausar o programa
@@ -143,6 +163,7 @@ public class Mesa  extends javax.swing.JDialog{
                 this.painel.add(gpCarta.getCarta1()); //adicionando carta 1 a tela
                 this.painel.add(gpCarta.getCarta2()); //adicionando carta 2 a tela
                 this.listGrupoCarta.add(gpCarta); // adicionando grupo na lista de grupo de cartas
+                this.listCartaEncontrado.add(gpCarta);
                 posicaoCartas.clear();  //impando lista de posicoes que sera usado no contrusctor de GrupoCarta
             }
 

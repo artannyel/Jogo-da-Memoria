@@ -8,9 +8,3 @@ public class principalTest {
     }
     
 }
-
-/**
- * passar dados entre janelas
- * https://www.youtube.com/watch?v=gEI_bj5t7fo
- * 
- */
