@@ -48,7 +48,7 @@ public class Mesa  extends javax.swing.JDialog{
                 //System.out.println("Grupo: " + carta.getIdGrupoCarta() +"   carta: " + carta.getIdCarta());
                     if(!listSelecionados.isEmpty()){
                         //System.out.println("nao estar vazio");
-                        gpCarta = listSelecionados.get(0);
+                        //gpCarta = listSelecionados.get(0);
                         //System.out.println("Grupo0: " + gpCarta.getCarta1().getIdGrupoCarta() +"   carta1: " + gpCarta.getCarta1().getIdCarta());
                         //System.out.println("Grupo0: " + gpCarta.getCarta2().getIdGrupoCarta() +"   carta2: " + gpCarta.getCarta2().getIdCarta());
                     }
@@ -99,18 +99,20 @@ public class Mesa  extends javax.swing.JDialog{
                                 //System.out.println("Pares restantes: " + listCartaEncontrado.size());
                             }*/
                         //jogadas = 0; //zerar o contador de jogadas realizadas
-                        System.out.println("Falta: " + listCartaEncontrado.size());
+                        //System.out.println("Falta: " + listCartaEncontrado.size());
                         //listSelecionados.clear(); //zerar a lista de cartas selecionadas
                     }
-                   
+                    /*
                     if(listCartaEncontrado.isEmpty()){
+                        
                         System.out.println("todos pares ja foram encontrados");
                         FimJogo fimJogo = new FimJogo(parent,true);
                         setEnabled(false); //desativa a Janela atual
                         fimJogo.setVisible(true); //deixa visivel a janela de fim de jogo
                         partida = fimJogo.getPartida();
+                        System.out.println("MESA acaoCarta-----" + getPartida());
                         dispose();
-                    }
+                    }*/
             }
         };
         
@@ -205,6 +207,7 @@ public class Mesa  extends javax.swing.JDialog{
                         setEnabled(false); //desativa a Janela atual
                         fimJogo.setVisible(true); //deixa visivel a janela de fim de jogo
                         partida = fimJogo.getPartida();
+                        System.out.println("PAUSE acaoCarta-----" + getPartida());
                         dispose();
                     }
                 setEnabled(true);

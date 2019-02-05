@@ -168,7 +168,7 @@ public class MenuJogo extends javax.swing.JFrame {
                         System.out.println("MENU---NOVA PARTIDA");
                         this.setVisible(true); //deixa o menu novamente visivel
                     }
-                
+                System.out.println("MENU--"+ this.mesa.getPartida());
             }
 
     }//GEN-LAST:event_btIniciarJogoActionPerformed
