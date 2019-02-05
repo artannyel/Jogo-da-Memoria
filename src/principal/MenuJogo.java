@@ -1,12 +1,9 @@
 package principal;
 
 import janelas.Mesa;
-import janelas.PainelJogo;
-import janelas.PainelJogo;
 import util.StatusJogo;
 
 public class MenuJogo extends javax.swing.JFrame {
-     private PainelJogo painelJogo;
      private Mesa mesa;
 
     public MenuJogo() {
@@ -157,18 +154,13 @@ public class MenuJogo extends javax.swing.JFrame {
                 this.dispose(); //deixa invisivel a tela
                 mesa.setEnabled(false); // desabilita janela
                 mesa.setVisible(true); // deixa visivel a mesa onde fica disposta as cartas
-                System.out.println("menu");
                 this.GrupoParesCartas.clearSelection();
-                System.out.println("valor: " + mesa.getPartida());
-                    if(mesa.getPartida() == StatusJogo.REINICIAR_PARTIDA){
+                
+                    while(mesa.getPartida() == StatusJogo.REINICIAR_PARTIDA){ //Enquanto uma nova partida nao for iniciada sera reiniciado o jogo
                         this.mesa = new Mesa(qtdPares,this,true);
-                        System.out.println("MENU---REINICIAR");
                         mesa.setVisible(true);
-                    } else  {
-                        System.out.println("MENU---NOVA PARTIDA");
-                        this.setVisible(true); //deixa o menu novamente visivel
                     }
-                System.out.println("MENU--"+ this.mesa.getPartida());
+                this.setVisible(true);
             }
 
     }//GEN-LAST:event_btIniciarJogoActionPerformed

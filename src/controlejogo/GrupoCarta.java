@@ -1,7 +1,6 @@
 package controlejogo;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
@@ -10,14 +9,20 @@ import javax.swing.ImageIcon;
 import util.StatusCarta;
 
 public class GrupoCarta {
-    private ActionListener acaoCarta;
     private final Carta carta1;
     private final Carta carta2;
     private final ImageIcon imgGrupo;
     private final ImageIcon imgPadrao;
-    private int idGrupoCarta;
-    private String urlImagem = new File("").getAbsolutePath();
+    private final int idGrupoCarta;
+    private final String urlImagem = new File("").getAbsolutePath();
 
+    /**
+     * Contructor da Classe GrupoCarta
+     * @param idGrupoCarta
+     * @param imagem
+     * @param posicao
+     * @param acaoCarta 
+     */
     public GrupoCarta(int idGrupoCarta, ImageIcon imagem, List<Pair<Integer, Integer>> posicao, ActionListener acaoCarta){
         this.idGrupoCarta = idGrupoCarta;
         this.imgGrupo = imagem;
@@ -29,35 +34,38 @@ public class GrupoCarta {
         viraCarta(carta1);
         viraCarta(carta2);
     }
-    
-     public GrupoCarta(int idGrupoCarta,  List<Pair<Integer, Integer>> posicao, ActionListener acaoCarta){
-        this.idGrupoCarta = idGrupoCarta; //set o numero do grupo
-        this.imgGrupo = null; //set imagem do grupo
-        this.imgPadrao = new ImageIcon(urlImagem+"//src//imagens//padrao//question_block.png");
-        this.carta1 = new Carta(0, this.idGrupoCarta, posicao.get(0).getKey() , posicao.get(0).getValue()); //constructor Carta(idCarta, idGrupoCarta, posicaox, posicaoY)
-        this.carta2 = new Carta(1, this.idGrupoCarta, posicao.get(1).getKey() , posicao.get(1).getValue()); //constructor Carta(idCarta, idGrupoCarta, posicaox, posicaoY)
-        this.carta1.addActionListener(acaoCarta);
-        this.carta2.addActionListener(acaoCarta);
-        viraCarta(carta1);
-        viraCarta(carta2);
-    }
-    
-    public void setIdGrupoCarta(int idGrupoCarta) {
-        this.idGrupoCarta = idGrupoCarta;
-    }
-    
+
+    /**
+     * Retorna a carta 1 do grupo
+     * @return Carta
+     */
     public Carta getCarta1() {
         return carta1;
     }
 
+    /**
+     * Retorna a carta 2 do grupo
+     * @return Carta
+     */
     public Carta getCarta2() {
         return carta2;
     }
 
+    /**
+     * Retorna o numero de identificação do grupo de cartas
+     * @return  int
+     */
     public int getIdGrupoCarta() {
         return idGrupoCarta;
     }
-   
+    /**
+     * Método responsavél por mudar a imagens das cartas
+     * CASO status iguaal a:\n
+     * NAO_SELECIONADO - exibe imagem padrao
+     * SELECIONADO - exibe a carta do seu grupo
+     * PAR_ENCONTRADO - exibe a carta do grupo  e desativa a carta
+     * @param carta 
+     */
     private void viraCarta (Carta carta){
         StatusCarta status = carta.getStatus();
             switch(status){
@@ -78,20 +86,14 @@ public class GrupoCarta {
             }
     }
     
-    //OCULTA AS CARTAS
+    /**
+     * Este método irar desvirar as todas as cartas do grupo
+     */
     public void zerarCartas(){
         this.carta1.setStatus(StatusCarta.NAO_SELECIONADO);
         viraCarta(carta1);
-        
         this.carta2.setStatus(StatusCarta.NAO_SELECIONADO);
         viraCarta(carta2);
-    }
-    
-    public Carta getCarta( int idCarta){
-            if(idCarta == 0){
-                return this.carta1;
-            }
-        return this.carta2;
     }
     
     public void executarAcao(Carta cartaMet){

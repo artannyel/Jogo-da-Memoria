@@ -3,26 +3,31 @@ package janelas;
 import util.StatusJogo;
 
 public class FimJogo extends javax.swing.JDialog {
-    private StatusJogo partida = StatusJogo.NOVO_PARTIDA;
+    private StatusJogo partida ;
 
     FimJogo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    public StatusJogo getPartida() {
-        return partida;
-    }
-
-    public void setPartida(StatusJogo partida) {
-        this.partida = partida;
-    }
-
     
+    /**
+     * constructor Classe FimJogo
+     * @param parent
+     * @param modal 
+     */
     public FimJogo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.setTitle("Jogo da Memoria");
         this.setLocationRelativeTo(null);
+        this.partida = StatusJogo.NOVA_PARTIDA;
         initComponents(); //iniciar os componentes graficos
+    }
+    
+    /**
+     * Método para devolver o Status do jogo
+     * @return StatusJogo
+     */
+    public StatusJogo getPartida() {
+        return partida;
     }
 
     @SuppressWarnings("unchecked")
@@ -98,17 +103,15 @@ public class FimJogo extends javax.swing.JDialog {
 
     private void reiniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciarPartidaActionPerformed
         this.partida = StatusJogo.REINICIAR_PARTIDA;
-        System.out.println("reiniciar partida");
-        this.dispose();
+        this.dispose(); //deixar a janela invisivel
     }//GEN-LAST:event_reiniciarPartidaActionPerformed
 
     private void novaPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaPartidaActionPerformed
-        this.partida = StatusJogo.NOVO_PARTIDA;
-        System.out.println("nova partida");
-        this.dispose();
+        this.partida = StatusJogo.NOVA_PARTIDA;
+        this.dispose(); // deixa a janelaminvisivel
     }//GEN-LAST:event_novaPartidaActionPerformed
+    
     public static void main(String args[]) {
-       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 FimJogo dialog = new FimJogo(new javax.swing.JFrame(), true);
