@@ -1,21 +1,22 @@
 package janelas;
 
+import util.StatusJogo;
+
 public class FimJogo extends javax.swing.JDialog {
-    
-    /**
-     * valores para PARTIDA
-     * 0 - nova partida
-     * 1- reiniciar partida
-     */
-    private int partida = 0;
+    private StatusJogo partida = StatusJogo.NOVO_PARTIDA;
 
     FimJogo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public int getPartida() {
+    public StatusJogo getPartida() {
         return partida;
     }
+
+    public void setPartida(StatusJogo partida) {
+        this.partida = partida;
+    }
+
     
     public FimJogo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -96,13 +97,13 @@ public class FimJogo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reiniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciarPartidaActionPerformed
-        this.partida = 1;
+        this.partida = StatusJogo.REINICIAR_PARTIDA;
         System.out.println("reiniciar partida");
         this.dispose();
     }//GEN-LAST:event_reiniciarPartidaActionPerformed
 
     private void novaPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaPartidaActionPerformed
-        this.partida = 0;
+        this.partida = StatusJogo.NOVO_PARTIDA;
         System.out.println("nova partida");
         this.dispose();
     }//GEN-LAST:event_novaPartidaActionPerformed

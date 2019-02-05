@@ -21,7 +21,7 @@ public class GrupoCarta {
     public GrupoCarta(int idGrupoCarta, ImageIcon imagem, List<Pair<Integer, Integer>> posicao, ActionListener acaoCarta){
         this.idGrupoCarta = idGrupoCarta;
         this.imgGrupo = imagem;
-        this.imgPadrao = new ImageIcon(urlImagem+"\\src\\imagens\\padrao\\question_block.png");
+        this.imgPadrao = new ImageIcon(urlImagem+"//src//imagens//padrao//question_block.png");
         carta1 = new Carta(0, this.idGrupoCarta, posicao.get(0).getKey() , posicao.get(0).getValue()); // Instanciar carta 1
         carta2 = new Carta(1, this.idGrupoCarta, posicao.get(1).getKey() , posicao.get(1).getValue()); // instanciar carta 2
         this.carta1.addActionListener(acaoCarta);
@@ -33,7 +33,7 @@ public class GrupoCarta {
      public GrupoCarta(int idGrupoCarta,  List<Pair<Integer, Integer>> posicao, ActionListener acaoCarta){
         this.idGrupoCarta = idGrupoCarta; //set o numero do grupo
         this.imgGrupo = null; //set imagem do grupo
-        this.imgPadrao = new ImageIcon(urlImagem+"\\src\\imagens\\padrao\\interrogacao.png");
+        this.imgPadrao = new ImageIcon(urlImagem+"//src//imagens//padrao//question_block.png");
         this.carta1 = new Carta(0, this.idGrupoCarta, posicao.get(0).getKey() , posicao.get(0).getValue()); //constructor Carta(idCarta, idGrupoCarta, posicaox, posicaoY)
         this.carta2 = new Carta(1, this.idGrupoCarta, posicao.get(1).getKey() , posicao.get(1).getValue()); //constructor Carta(idCarta, idGrupoCarta, posicaox, posicaoY)
         this.carta1.addActionListener(acaoCarta);
