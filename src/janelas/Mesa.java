@@ -12,49 +12,62 @@ import java.util.Random;
 import javafx.util.Pair;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import util.Jogador;
 import util.StatusCarta;
 import util.StatusJogo;
 
 public class Mesa  extends javax.swing.JDialog{
+    private final Thread pauseInicio = pauseInicio();
+    private final int MAX_JOGADAS = 2;
+    private final JPanel painel;
     private  ActionListener acaoCarta;
     private List<GrupoCarta> listGrupoCarta;
     private List<GrupoCarta> listSelecionados;
     private List<GrupoCarta> listCartaEncontrado;
-    private final int MAX_JOGADAS = 2;
     private int jogadas = 0; // contador de jogadas realizadas
-    private final JPanel painel;
     private String dirProjeto;
-    private StatusJogo partida = StatusJogo.NOVA_PARTIDA ; // paramentro nova partida/ reiniciar a ultima
-    private final Thread pauseInicio = pauseInicio();
     private Thread pauseCarta;
+    private StatusJogo partida = StatusJogo.NOVA_PARTIDA ; // paramentro nova partida/ reiniciar a ultima
     private FimJogo fimJogo;
     private java.awt.Frame parent;
+    private final Jogador jogador1;
+    private final Jogador jogador2;
+    private JLabel vez;
+    
     
     /**
      * Constructor para inciar uma nova Mesa(int,java.awt.Frame,boolean)
      * @param qtdPares
      * @param parent
      * @param modal 
+     * @param nomeJogador1 
+     * @param nomeJogador2 
      */
-    public Mesa(int qtdPares,java.awt.Frame parent, boolean modal){
+    public Mesa(int qtdPares,java.awt.Frame parent, boolean modal, String nomeJogador1, String nomeJogador2){
         super(parent, modal);
         this.setTitle("Jogo da Memoria"); //setar um titulo a JDialog
         this.listCartaEncontrado = new ArrayList<>(); //onstanciando uma lista para os pares ja encontrados
         this.listGrupoCarta = new ArrayList<>(); //instanciando uma lista para guardar os grupos de cartas
         this.listSelecionados = new ArrayList<>(); //instancia uma lista para armazenar as cartas que ja foram selecionadas
         this.dirProjeto = new File("").getAbsolutePath(); //pega o caminho da pasta Jogo da Memoria
-        dirProjeto += "//src//imagens//"; //indicar o diretorio onde estao os pacotes de imagens
-        
+        this.dirProjeto += "//src//imagens//"; //indicar o diretorio onde estao os pacotes de imagens
+        this.jogador1 = new Jogador(nomeJogador1,true);
+        this.jogador2 = new Jogador(nomeJogador2,false);
+        this.vez = new JLabel();
         //Configurando o painel
         this.painel = new JPanel(); //instanciando um novo painel
         this.add(this.painel); //adicionando painel na JFrame
         this.painel.setLayout(null);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setSize( calcTam((int) (qtdPares*0.5)), calcTam(4)+30); // definir o tamanho da janela PainelJogo (largura, altura)
+        this.setSize( calcTam((int) (qtdPares*0.5)), calcTam(4)+50); // definir o tamanho da janela PainelJogo (largura, altura)
         this.setLocationRelativeTo(null); //Centralizar a PainelJogo no meio
         
+        this.vez.setBounds(10, 10,150, 20);
+        this.painel.add(this.vez);
+        this.vez.setText("VEZ: " + this.jogador1.getNomeJogador());
         this.acaoCarta = evtCartas(); //setar um acao padrao as cartas
         addCartas(qtdPares); // adicionar cartas no painel
         
@@ -70,7 +83,7 @@ public class Mesa  extends javax.swing.JDialog{
      * @return ActionListener
      */
     private ActionListener evtCartas(){
-        ActionListener acaoCarta = new ActionListener() {
+        ActionListener acao = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 Carta carta = ((Carta) ae.getSource()); //a variavel pegar a carta que foi selecionada
@@ -88,7 +101,7 @@ public class Mesa  extends javax.swing.JDialog{
                     }
             }
         };
-        return acaoCarta;
+        return acao;
     }
     
     /**
@@ -128,19 +141,44 @@ public class Mesa  extends javax.swing.JDialog{
                         for(GrupoCarta gpc : listSelecionados){ //virar para baixo as cartas selecionadas
                             gpc.zerarCartas();
                         }
+                            if(jogador1.isMinhaVez()){ //jogador1 perde a vez
+                                jogador1.perdePontos();
+                                jogador1.setMinhaVez(false);
+                                jogador2.setMinhaVez(true);
+                            } else { //jogador2 perde a vez
+                                jogador2.perdePontos();
+                                jogador2.setMinhaVez(false);
+                                jogador1.setMinhaVez(true);
+                            }
                     } else {
+                            if(jogador1.isMinhaVez()){
+                                jogador1.ganhaPontos();
+                            } else {
+                                jogador2.ganhaPontos();
+                            }
                         listCartaEncontrado.remove(gpCarta); //remove o gripo que já foram achado suas cartas
                     }
                 jogadas = 0; //zerar o contador de jogadas realizadas
                 listSelecionados.clear();  //limpa a lista do grupo de cartas
                     if(listCartaEncontrado.isEmpty()){
-                        fimJogo = new FimJogo(parent,true); 
+                        fimJogo = new FimJogo(parent,true, jogador1, jogador2); 
                         setEnabled(false); //desativa a Janela atual
+                        //fimJogo.setDadosJogo(jogador1, jogador2);
                         fimJogo.setVisible(true); //deixa visivel a janela de fim de jogo
                         partida = fimJogo.getPartida();
                         dispose(); //deixar a tela innvisivel
                     }
-                setEnabled(true);
+                
+                    System.out.println(jogador1.getNomeJogador() + " vez: " + jogador1.isMinhaVez() + " Pontos: " + jogador1.getPontuacaoJogador());
+                    System.out.println(jogador2.getNomeJogador() + " vez: " + jogador2.isMinhaVez() + " Pontos: " + jogador2.getPontuacaoJogador());
+                    System.out.println("");
+                     if(jogador1.isMinhaVez()){
+                               vez.setText("VEZ: " + jogador1.getNomeJogador());
+                            } else {
+                                vez.setText("VEZ: " + jogador2.getNomeJogador());
+                            }
+                    
+                    setEnabled(true);
             }
         };
         return pause;
@@ -155,7 +193,7 @@ public class Mesa  extends javax.swing.JDialog{
         List<Pair<Integer,Integer>> listPosicoes = new ArrayList();
         List<ImageIcon> listImagens = imagens();
         int posX = 10;
-        int posY = 10;
+        int posY = 30;
             //Gera as posicoes das cartas
             for(int i = 1; i <= qtdPares*2; i++){
                 listPosicoes.add(new Pair<>(posX, posY));
@@ -215,13 +253,16 @@ public class Mesa  extends javax.swing.JDialog{
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERRO NA MANIPULACAO DO ARQUIVO");
         };
-        //Collections.shuffle(listImagens); //embaralhar as lista de imagens
+        Collections.shuffle(listImagens); //embaralhar as lista de imagens
         return listImagens;
     }
     
     /**
-     * retorna um valor de uma classe'1 
-     * @return 
+     * retorna um valor de uma classe
+     * 2 status:
+     * NOVA_PARTIDA
+     * REINICIAR_PARTIDA
+     * @return StatusJogo
      */
     public StatusJogo getPartida() {
         return partida;

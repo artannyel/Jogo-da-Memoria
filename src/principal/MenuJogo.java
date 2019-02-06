@@ -25,8 +25,10 @@ public class MenuJogo extends javax.swing.JFrame {
         Rb_14_Pares = new javax.swing.JRadioButton();
         btIniciarJogo = new javax.swing.JButton();
         pNomeJogador = new javax.swing.JPanel();
-        CaixaTextoNome = new javax.swing.JTextField();
+        cxNomeJ1 = new javax.swing.JTextField();
         textoJogador = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        cxNomeJ2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,27 +86,37 @@ public class MenuJogo extends javax.swing.JFrame {
             }
         });
 
-        textoJogador.setText("Jogador:");
+        textoJogador.setText("JOGADOR 1:");
+
+        jLabel1.setText("JOGADOR 2:");
 
         javax.swing.GroupLayout pNomeJogadorLayout = new javax.swing.GroupLayout(pNomeJogador);
         pNomeJogador.setLayout(pNomeJogadorLayout);
         pNomeJogadorLayout.setHorizontalGroup(
             pNomeJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pNomeJogadorLayout.createSequentialGroup()
+            .addGroup(pNomeJogadorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(textoJogador)
-                .addGap(18, 18, 18)
-                .addComponent(CaixaTextoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-                .addGap(33, 33, 33))
+                .addGroup(pNomeJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textoJogador)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pNomeJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cxNomeJ2)
+                    .addComponent(cxNomeJ1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
         pNomeJogadorLayout.setVerticalGroup(
             pNomeJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pNomeJogadorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(pNomeJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textoJogador)
-                    .addComponent(CaixaTextoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
+                    .addComponent(cxNomeJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pNomeJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cxNomeJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,27 +124,29 @@ public class MenuJogo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pNumPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(177, 177, 177)
-                            .addComponent(btIniciarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(35, 35, 35)
-                            .addComponent(pNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(pNumPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(btIniciarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(pNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE)
+                .addComponent(pNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pNumPares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addComponent(btIniciarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -150,14 +164,14 @@ public class MenuJogo extends javax.swing.JFrame {
                     } else {
                         qtdPares = Integer.parseInt(Rb_14_Pares.getText());
                     }
-                this.mesa = new Mesa(qtdPares,this,true);
+                this.mesa = new Mesa(qtdPares,this,true,this.cxNomeJ1.getText(), this.cxNomeJ2.getText());
                 this.dispose(); //deixa invisivel a tela
                 mesa.setEnabled(false); // desabilita janela
                 mesa.setVisible(true); // deixa visivel a mesa onde fica disposta as cartas
                 this.GrupoParesCartas.clearSelection();
                 
                     while(mesa.getPartida() == StatusJogo.REINICIAR_PARTIDA){ //Enquanto uma nova partida nao for iniciada sera reiniciado o jogo
-                        this.mesa = new Mesa(qtdPares,this,true);
+                        this.mesa = new Mesa(qtdPares,this,true, this.cxNomeJ1.getText(), this.cxNomeJ2.getText());
                         mesa.setVisible(true);
                     }
                 this.setVisible(true);
@@ -191,13 +205,15 @@ public class MenuJogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CaixaTextoNome;
     private javax.swing.ButtonGroup GrupoParesCartas;
     private javax.swing.JRadioButton Rb_10_Pares;
     private javax.swing.JRadioButton Rb_12_Pares;
     private javax.swing.JRadioButton Rb_14_Pares;
     private javax.swing.JRadioButton Rb_8_Pares;
     private javax.swing.JButton btIniciarJogo;
+    private javax.swing.JTextField cxNomeJ1;
+    private javax.swing.JTextField cxNomeJ2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel pNomeJogador;
     private javax.swing.JPanel pNumPares;
     private javax.swing.JLabel textoJogador;
